@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import os
 
 # Initialize Flask application
 app = Flask(__name__, static_folder='../frontend/build')
+CORS(app)  # This will enable CORS for all routes
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -22,10 +24,7 @@ def echo():
     Echo API endpoint.
     This route receives a POST request and returns the same data in the response.
     """
-    # Get the JSON data from the request body
     data = request.json
-    
-    # Return the same data as a JSON response
     return jsonify(data)
 
 if __name__ == '__main__':

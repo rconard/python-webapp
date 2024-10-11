@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from './config';
 
 function App() {
-  // State to store the input value and the response from the server
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState(null);
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to the echo API endpoint
-      const res = await fetch('/api/echo', {
+      const res = await fetch(`${API_BASE_URL}/api/echo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message: inputValue }),
       });
-      
-      // Parse the JSON response
+      if (!res || !res.ok) {
+        throw new Error(`HTTP error! status: ${res ? res.status : 'unknown'}`);
+      }
       const data = await res.json();
-      
-      // Update the response state with the received data
       setResponse(data);
     } catch (error) {
       console.error('Error:', error);
+      setResponse({ error: 'An error occurred' });
     }
   };
 

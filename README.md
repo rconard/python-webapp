@@ -7,10 +7,10 @@ This project is a basic implementation of a Model-View-Controller (MVC) pattern 
 ```
 python-webapp/
 │
-├── README.md           # This file
-├── Dockerfile          # Dockerfile for creating a dev container
+├── README.md
 ├── .devcontainer/
-│   └── devcontainer.json # Configuration for VS Code dev container
+│   ├── devcontainer.json # Configuration for VS Code dev container
+│   └── Dockerfile          # Dockerfile for creating a dev container
 ├── backend/
 │   ├── app.py          # Main Flask application
 │   ├── requirements.txt # Python dependencies
@@ -21,7 +21,9 @@ python-webapp/
     ├── public/
     │   └── index.html  # HTML template
     ├── src/
+    │   ├── config.js   # Determine API Base by env
     │   ├── App.js      # Main React component
+    │   ├── App.test.js # Tests for the App component
     │   └── index.js    # Entry point for React app
     └── package.json    # Node.js dependencies and scripts
 ```
@@ -96,6 +98,8 @@ If you prefer not to use the dev container, you can set up the project manually:
 
 ## Running Tests
 
+### Backend Tests
+
 To run the backend API tests:
 
 1. Navigate to the backend directory:
@@ -112,3 +116,19 @@ To run the backend API tests:
    ```
    python -m unittest tests/test_api.py
    ```
+
+### Frontend Tests
+
+To run the frontend tests:
+
+1. Navigate to the frontend directory:
+   ```
+   cd frontend
+   ```
+
+2. Run the tests using Jest:
+   ```
+   npm test
+   ```
+
+This will start Jest in watch mode, which will automatically re-run tests when files are changed.
