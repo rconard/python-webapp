@@ -7,7 +7,7 @@ interpreter.auto_run = True
 interpreter.loop = True
 
 # Start the backend app.py in a subprocess
-backend_process = subprocess.Popen(['nodemon', '--exec', 'python', '/workspaces/python-webapp/backend/app.py'])
+backend_process = subprocess.Popen(['nodemon', '--watch', '/workspaces/python-webapp/backend', '--exec', 'python', '/workspaces/python-webapp/backend/app.py'])
 
 # Ensure the subprocess is terminated when this script stops executing
 atexit.register(backend_process.terminate)
