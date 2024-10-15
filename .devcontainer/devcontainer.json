@@ -22,6 +22,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": [
 		"pip install -r backend/requirements.txt",
+		"python -m pip install -U --upgrade-strategy only-if-needed aider-chat",
 		"cd frontend && pnpm install && npm run build",
 		"npm install -g nodemon dotenv-cli"
 	],
