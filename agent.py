@@ -53,12 +53,13 @@ $ cd /workspaces/python-webapp/frontend && npm run test -- --watchAll=false
 
 <Insert instructions here>
 
-Important Context Notes:
+Important:
 * The environment and dependencies are already configured and ready for you to use.
 * I have already started the backend app with hot reloading in a subprocess. You can assume that the latest version of the backend API is available at http://localhost:5000.
 * Package management for the frontend is done with pnpm, and for the backend, it is done with pip and a `requirements.txt` file.
 * Always update the contents of the `README.md` file when you finish.
-* Remember that this is an existing production application that we are updating when you make changes. For example, you should not remove existing functionality, tests, content, or documentation unless explicitly instructed to do so. Your work should be additive unless otherwise specified.
+* Add unit and integration tests once you finish feature work when appropriate. Do not overwrite existing tests. Read the existing tests and make sure that you understand them before adding new ones.
+* Remember that this is an existing production application that we are updating when you make changes. Before editing, refactoring, or adding a file, you should read the content of the existing file. For example, you should not remove existing functionality, tests, content, or documentation unless explicitly instructed to do so. Your work should be additive unless otherwise specified.
 """)
 
 interpreter.messages = messages
