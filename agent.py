@@ -51,7 +51,7 @@ $ cd /workspaces/python-webapp/backend && pytest tests/test_api.py
 $ cd /workspaces/python-webapp/frontend && npm run test -- --watchAll=false
 ```
 
-<Insert instructions here>
+<Insert context and an introduction to the task to be done here>
 
 Important:
 * The environment and dependencies are already configured and ready for you to use.
@@ -60,6 +60,8 @@ Important:
 * Always update the contents of the `README.md` file when you finish.
 * Add unit and integration tests once you finish feature work when appropriate. Do not overwrite existing tests. Read the existing tests and make sure that you understand them before adding new ones.
 * Remember that this is an existing production application that we are updating when you make changes. Before editing, refactoring, or adding a file, you should read the content of the existing file. For example, you should not remove existing functionality, tests, content, or documentation unless explicitly instructed to do so. Your work should be additive unless otherwise specified.
+
+<Provide specific tasks to complete here>
 """)
 
 interpreter.messages = messages
