@@ -90,7 +90,7 @@ If you prefer not to use the dev container, you can set up the project manually:
 2. Set up the frontend:
    ```
    cd frontend
-   npm install
+   pnpm install
    npm start
    ```
 

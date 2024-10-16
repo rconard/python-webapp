@@ -78,7 +78,7 @@ The webapp currently only has a very simple home page. We need to add very simpl
 Important:
 * The environment and dependencies are already configured and ready for you to use.
 * I have already started the backend app with hot reloading in a subprocess. You can assume that the latest version of the backend API is available at http://localhost:5000.
-* Package management for the frontend is done with npm, and for the backend, it is done with pip and a `requirements.txt` file.
+* Package management for the frontend is done with pnpm, and for the backend, it is done with pip and a `requirements.txt` file.
 * Always update the contents of the `README.md` file when you finish.
 * Add unit and integration tests once you finish feature work when appropriate. Do not overwrite existing tests. Read the existing tests and make sure that you understand them before adding new ones.
 * Remember that this is an existing production application that we are updating when you make changes. Before editing, refactoring, or adding a file, you should read the content of the existing file. For example, you should not remove existing functionality, tests, content, or documentation unless explicitly instructed to do so. Your work should be additive unless otherwise specified.
@@ -91,3 +91,7 @@ Update the site to support routing with the following requirements:
 
 # Run the initial context setup
 coder.run(initial_message)
+
+coder.run('Did you add appropriate unit and integration test coverage? Evaluate the test changes that you made and add any necessary tests.')
+
+coder.run('Run tests for the backend and frontend, and fix any issues that you find.')

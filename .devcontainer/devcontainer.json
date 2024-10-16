@@ -9,7 +9,7 @@
 			"nodeGypDependencies": true,
 			"installYarnUsingApt": true,
 			"version": "lts",
-			"pnpmVersion": "none",
+			"pnpmVersion": "latest",
 			"nvmVersion": "latest"
 		},
 		"ghcr.io/devcontainers/features/python:1": {
@@ -23,5 +23,5 @@
 
 	"appPort": [3000, 5000],
 
-	"postCreateCommand": "pip install -r backend/requirements.txt && python -m pip install -U --upgrade-strategy only-if-needed aider-chat && npm --prefix frontend install && npm --prefix frontend run build && npm install -g nodemon dotenv-cli",
+	"postCreateCommand": "pip install -r backend/requirements.txt && python -m pip install -U --upgrade-strategy only-if-needed aider-chat && pnpm --workspace-root=\"/workspace\" --prefix frontend install && npm --prefix frontend run build && npm install -g nodemon dotenv-cli"
 }
