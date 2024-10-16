@@ -2,20 +2,13 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "python-webapp",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"nodeGypDependencies": true,
-			"installYarnUsingApt": true,
-			"version": "lts",
-			"pnpmVersion": "latest",
-			"nvmVersion": "latest"
-		},
-		"ghcr.io/devcontainers/features/python:1": {
-			"installTools": true,
-			"version": "3.12"
-		}
+	"build": {
+		// https://stackoverflow.com/a/78019974/7954512
+        "dockerfile": "Dockerfile",
+
+        // Runs docker from the project root instead of `.devcontainer`,
+        // to ensure `COPY pnpm-lock.yaml ./` works
+        "context": ".."
 	},
 
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
@@ -23,5 +16,9 @@
 
 	"appPort": [3000, 5000],
 
-	"postCreateCommand": "pip install -r backend/requirements.txt && python -m pip install -U --upgrade-strategy only-if-needed aider-chat && pnpm --workspace-root=\"/workspace\" --prefix frontend install && npm --prefix frontend run build && npm install -g nodemon dotenv-cli"
+	"containerEnv": {
+    "PNPM_HOME": "/workspace/frontend/pnpm"
+	},
+
+	"postCreateCommand": "pnpm --prefix frontend run build"
 }
