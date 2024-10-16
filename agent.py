@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.
 
 # Start the backend app.py in a subprocess
-backend_process = subprocess.Popen(['python', '/workspaces/python-webapp/backend/app.py'])
+backend_process = subprocess.Popen(['python', '/workspace/backend/app.py'])
 # Ensure the subprocess is terminated when this script stops executing
 atexit.register(backend_process.terminate)
 
@@ -20,16 +20,16 @@ io = InputOutput(yes=True)
 
 # Define the files to be included in the chat
 fnames = [
-    "/workspaces/python-webapp/README.md",
-    "/workspaces/python-webapp/backend/app.py",
-    "/workspaces/python-webapp/backend/requirements.txt",
-    "/workspaces/python-webapp/backend/tests/test_api.py",
-    "/workspaces/python-webapp/frontend/public/index.html",
-    "/workspaces/python-webapp/frontend/src/config.js",
-    "/workspaces/python-webapp/frontend/src/App.js",
-    "/workspaces/python-webapp/frontend/src/App.test.js",
-    "/workspaces/python-webapp/frontend/src/index.js",
-    "/workspaces/python-webapp/frontend/package.json"
+    "/workspace/README.md",
+    "/workspace/backend/app.py",
+    "/workspace/backend/requirements.txt",
+    "/workspace/backend/tests/test_api.py",
+    "/workspace/frontend/public/index.html",
+    "/workspace/frontend/src/config.js",
+    "/workspace/frontend/src/App.js",
+    "/workspace/frontend/src/App.test.js",
+    "/workspace/frontend/src/index.js",
+    "/workspace/frontend/package.json"
 ]
 
 # Create a coder object
@@ -39,12 +39,12 @@ coder = Coder.create(main_model=model, fnames=fnames, io=io)
 initial_message = """
 I have a web application that uses a Python backend and a React frontend that we are going to update.
 
-The backend code is in `/workspaces/python-webapp/backend`, and the frontend code is in `/workspaces/python-webapp/frontend`.
+The backend code is in `/workspace/backend`, and the frontend code is in `/workspace/frontend`.
 
 The webapp is organized as follows:
 
 ```
-/workspaces/python-webapp/
+/workspace/
 │
 ├── README.md
 ├── .devcontainer/
@@ -69,8 +69,8 @@ The webapp is organized as follows:
 
 You can run tests to validate both the backend and frontend of the webapp with these 2 steps:
 ```sh
-$ cd /workspaces/python-webapp/backend && pytest tests/test_api.py
-$ cd /workspaces/python-webapp/frontend && npm run test -- --watchAll=false
+$ cd /workspace/backend && pytest tests/test_api.py
+$ cd /workspace/frontend && npm run test -- --watchAll=false
 ```
 
 The webapp currently only has a very simple home page. We need to add very simple routing to the site with the React Router library (`react-router-dom`).
