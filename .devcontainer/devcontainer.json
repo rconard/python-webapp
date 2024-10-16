@@ -1,12 +1,15 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "python-webapp",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"nodeGypDependencies": true,
 			"installYarnUsingApt": true,
 			"version": "lts",
-			"pnpmVersion": "latest",
+			"pnpmVersion": "none",
 			"nvmVersion": "latest"
 		},
 		"ghcr.io/devcontainers/features/python:1": {
@@ -15,24 +18,19 @@
 		}
 	},
 
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [3000, 5000],
-	"appPort": [3000, 5000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": [
-		"pip install -r backend/requirements.txt",
-		"python -m pip install -U --upgrade-strategy only-if-needed aider-chat",
-		"cd frontend && pnpm install && npm run build",
-		"npm install -g nodemon dotenv-cli"
-	],
+	"postCreateCommand": "pip install -r backend/requirements.txt && python -m pip install -U --upgrade-strategy only-if-needed aider-chat && npm --prefix frontend install && npm --prefix frontend run build && npm install -g nodemon dotenv-cli",
+
 
 	// Configure tool-specific properties.
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-python.python"
-			]
-		}
-	}
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
