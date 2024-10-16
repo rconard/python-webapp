@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from './App';
+import { MemoryRouter } from 'react-router-dom';
 import { API_BASE_URL } from './config';
 
 // Increase the timeout for async operations
@@ -11,7 +12,11 @@ jest.setTimeout(10000);
 describe('App component', () => {
   // Test 1: Verify that the main components of the app are rendered
   test('renders main app components', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     const titleElement = screen.getByText(/MVC Template App/i);
     expect(titleElement).toBeInTheDocument();
@@ -90,5 +95,18 @@ describe('App component', () => {
     // Check if the response is updated
     responseElement = await screen.findByText(/"message": "Second message"/);
     expect(responseElement).toBeInTheDocument();
+  });
+});
+
+// Test 6: Verify navigation to About page
+test('navigates to About page', async () => {
+  render(
+    <MemoryRouter initialEntries={['/about']}>
+      <App />
+    </MemoryRouter>
+  );
+
+  await waitFor(() => {
+    expect(screen.getByText(/This is the about page/i)).toBeInTheDocument();
   });
 });

@@ -43,7 +43,8 @@ The frontend is a single-page application built with React. It provides a simple
 
 Key files:
 - `frontend/public/index.html`: The main HTML file that serves as a template for the React application.
-- `frontend/src/App.js`: The main React component that handles the user interface and API interaction.
+- `frontend/src/App.js`: The main React component that handles the user interface and API interaction, including routing.
+- `frontend/src/About.js`: The React component for the About page.
 - `frontend/src/index.js`: The entry point for the React application.
 - `frontend/package.json`: Defines the Node.js dependencies and scripts for the frontend.
 
