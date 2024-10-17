@@ -22,4 +22,6 @@ RUN pip install -r requirements.txt --break-system-packages
 
 RUN python -m pip install -U --upgrade-strategy only-if-needed aider-chat aider-chat[playwright] --break-system-packages
 
+RUN /bin/python3 -m playwright install --with-deps chromium
+
 RUN echo 'alias pn=pnpm' >> /home/node/.bashrc

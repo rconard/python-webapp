@@ -32,7 +32,11 @@ describe('App component', () => {
 
   // Test 2: Verify that user input is correctly handled
   test('handles user input correctly', async () => {
-    render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     
     await userEvent.type(inputElement, 'Hello, World!');
@@ -42,7 +46,11 @@ describe('App component', () => {
 
   // Test 3: Verify form submission and response display
   test('submits form and displays response', async () => {
-    render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
@@ -59,7 +67,11 @@ describe('App component', () => {
 
   // Test 4: Verify handling of empty input
   test('handles empty input submission', async () => {
-    render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
     fireEvent.click(buttonElement);
@@ -74,7 +86,11 @@ describe('App component', () => {
 
   // Test 5: Verify that multiple submissions update the displayed response
   test('updates displayed response on multiple submissions', async () => {
-    render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
