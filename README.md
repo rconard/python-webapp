@@ -21,8 +21,9 @@ python-webapp/
     ├── public/
     │   └── index.html  # HTML template
     ├── src/
-    │   ├── config.js   # Determine API Base by env
-    │   ├── App.js      # Main React component
+    │   ├── About.js    # About page component
+    │   ├── config.js   # Determine API Base by environment
+    │   ├── App.js      # Main React component with routing
     │   ├── App.test.js # Tests for the App component
     │   └── index.js    # Entry point for React app
     └── package.json    # Node.js dependencies and scripts
