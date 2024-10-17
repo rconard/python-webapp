@@ -14,5 +14,9 @@
 
 	"appPort": [3000, 5000],
 
+	"containerEnv": {
+    "AIDER_AUTO_COMMITS": "false"
+	},
+
 	"postCreateCommand": "pnpm --prefix frontend run build"
 }
