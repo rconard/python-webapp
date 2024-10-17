@@ -3,7 +3,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import About from './About';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { API_BASE_URL } from './config';
 
@@ -96,5 +97,35 @@ describe('App component', () => {
     // Check if the response is updated
     responseElement = await screen.findByText(/"message": "Second message"/);
     expect(responseElement).toBeInTheDocument();
+  });
+  // Test 6: Verify navigation to the about page
+  test('navigates to the about page', async () => {
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
+
+    const aboutLink = screen.getByText(/About/i);
+    fireEvent.click(aboutLink);
+
+    await waitFor(() => {
+      expect(screen.getByText(/This is the about page/i)).toBeInTheDocument();
+    });
+  });
+
+  // Test 7: Verify rendering of the about page content
+  test('renders about page content', () => {
+    render(
+      <Router>
+        <Route path="/about" component={About} />
+      </Router>
+    );
+
+    const aboutHeading = screen.getByText(/About/i);
+    const aboutContent = screen.getByText(/This is the about page/i);
+
+    expect(aboutHeading).toBeInTheDocument();
+    expect(aboutContent).toBeInTheDocument();
   });
 });
