@@ -3,6 +3,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { API_BASE_URL } from './config';
 
 // Increase the timeout for async operations
@@ -11,7 +13,11 @@ jest.setTimeout(10000);
 describe('App component', () => {
   // Test 1: Verify that the main components of the app are rendered
   test('renders main app components', () => {
-    render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     
     const titleElement = screen.getByText(/MVC Template App/i);
     expect(titleElement).toBeInTheDocument();
