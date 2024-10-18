@@ -5,7 +5,7 @@ This project is a basic implementation of a Model-View-Controller (MVC) pattern 
 ## Project Structure
 
 ```
-python-webapp/
+/workspace/
 │
 ├── README.md
 ├── .devcontainer/

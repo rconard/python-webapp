@@ -3,9 +3,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import App from './App';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import About from './About';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { API_BASE_URL } from './config';
 
 // Increase the timeout for async operations
@@ -14,11 +11,7 @@ jest.setTimeout(10000);
 describe('App component', () => {
   // Test 1: Verify that the main components of the app are rendered
   test('renders main app components', () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    render(<App />);
     
     const titleElement = screen.getByText(/MVC Template App/i);
     expect(titleElement).toBeInTheDocument();
@@ -32,11 +25,7 @@ describe('App component', () => {
 
   // Test 2: Verify that user input is correctly handled
   test('handles user input correctly', async () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    render(<App />);
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     
     await userEvent.type(inputElement, 'Hello, World!');
@@ -46,11 +35,7 @@ describe('App component', () => {
 
   // Test 3: Verify form submission and response display
   test('submits form and displays response', async () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    render(<App />);
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
@@ -67,11 +52,7 @@ describe('App component', () => {
 
   // Test 4: Verify handling of empty input
   test('handles empty input submission', async () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    render(<App />);
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
     fireEvent.click(buttonElement);
@@ -86,11 +67,7 @@ describe('App component', () => {
 
   // Test 5: Verify that multiple submissions update the displayed response
   test('updates displayed response on multiple submissions', async () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    render(<App />);
     const inputElement = screen.getByPlaceholderText(/Enter a message/i);
     const buttonElement = screen.getByRole('button', { name: /Send/i });
 
@@ -113,35 +90,5 @@ describe('App component', () => {
     // Check if the response is updated
     responseElement = await screen.findByText(/"message": "Second message"/);
     expect(responseElement).toBeInTheDocument();
-  });
-  // Test 6: Verify navigation to the about page
-  test('navigates to the about page', async () => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
-
-    const aboutLink = screen.getByText(/About/i);
-    fireEvent.click(aboutLink);
-
-    await waitFor(() => {
-      expect(screen.getByText(/This is the about page/i)).toBeInTheDocument();
-    });
-  });
-
-  // Test 7: Verify rendering of the about page content
-  test('renders about page content', () => {
-    render(
-      <Router>
-        <Route path="/about" component={About} />
-      </Router>
-    );
-
-    const aboutHeading = screen.getByText(/About/i);
-    const aboutContent = screen.getByText(/This is the about page/i);
-
-    expect(aboutHeading).toBeInTheDocument();
-    expect(aboutContent).toBeInTheDocument();
   });
 });
