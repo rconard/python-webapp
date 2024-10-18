@@ -46,14 +46,11 @@ with open(project_structure_file_path, 'r') as file:
     project_structure = file.read()
 
 guidance = """
-The webapp currently only has a very simple home page. We need to add very simple routing to the site with the React Router library (`react-router-dom`).
+I want to make sure that everything is setup correctly before further development.
 """
 
 instructions = """
-Update the site to support routing with the following requirements:
-* Add a new page at `/about` that displays a simple message like "This is the about page."
-* Add a navigation bar to the top of the site with links to the home page and the about page.
-* Add unit tests for the new routing functionality.
+Carefully audit the site and make sure that everything is production ready before we proceed with additional feature development.
 """
 
 # Define the initial context and instructions
