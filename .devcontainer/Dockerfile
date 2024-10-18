@@ -6,13 +6,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Symlink alias Python 3 and pip
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN npm uninstall -g pnpm
-
-WORKDIR /workspaces/frontend
-
-ENV PNPM_HOME=/workspaces/pnpm
-RUN corepack enable pnpm
-
 COPY backend/requirements.txt /workspace/backend/
 
 WORKDIR /workspace/backend
@@ -23,5 +16,3 @@ RUN pip install -r requirements.txt --break-system-packages
 RUN python -m pip install -U --upgrade-strategy only-if-needed aider-chat aider-chat[playwright] --break-system-packages
 
 RUN /bin/python3 -m playwright install --with-deps chromium
-
-RUN echo 'alias pn=pnpm' >> /home/node/.bashrc

@@ -79,7 +79,7 @@ $ cd /workspace/frontend && npm run test -- --watchAll=false
 Important:
 * The environment and dependencies are already configured and ready for you to use. Do not try to initialize the environment or project. Focus on changes from the existing state that are requested here.
 * The backend app is currently running and will always be updated. The latest version of the backend API is available at http://localhost:5000.
-* Frontend package managment: `pnpm` (do not use `npm`)
+* Frontend package managment: `npm` and the `frontend/package.json` file (remember to always use the `--save` flag when adding packages)
 * Backend package management: `pip` and the `backend/requirements.txt` file
 * Remember that this is an existing production application that we are updating when you make changes. Before editing, refactoring, or adding a file, you should read the content of the existing file. For example, you should not remove existing functionality, tests, content, or documentation unless explicitly instructed to do so. Your work should be additive unless otherwise specified.
 

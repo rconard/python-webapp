@@ -4,8 +4,6 @@
 		// https://stackoverflow.com/a/78019974/7954512
         "dockerfile": "Dockerfile",
 
-        // Runs docker from the project root instead of `.devcontainer`,
-        // to ensure `COPY pnpm-lock.yaml ./` works
         "context": ".."
 	},
 
@@ -18,5 +16,5 @@
     "AIDER_AUTO_COMMITS": "false"
 	},
 
-	"postCreateCommand": "pnpm --prefix frontend run build"
+	"postCreateCommand": "npm --prefix frontend install && npm --prefix frontend run build"
 }

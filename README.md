@@ -10,23 +10,22 @@ This project is a basic implementation of a Model-View-Controller (MVC) pattern 
 ├── README.md
 ├── .devcontainer/
 │   ├── devcontainer.json # Configuration for VS Code dev container
-│   └── Dockerfile          # Dockerfile for creating a dev container
+│   └── Dockerfile        # Dockerfile for creating a dev container
 ├── backend/
-│   ├── app.py          # Main Flask application
-│   ├── requirements.txt # Python dependencies
+│   ├── app.py            # Main Flask application
+│   ├── requirements.txt  # Python dependencies
 │   └── tests/
-│       └── test_api.py # Unit tests for the backend API
+│       └── test_api.py   # Unit tests for the backend API
 │
 └── frontend/
     ├── public/
-    │   └── index.html  # HTML template
+    │   └── index.html    # HTML template
     ├── src/
-    │   ├── About.js    # About page component
-    │   ├── config.js   # Determine API Base by environment
-    │   ├── App.js      # Main React component with routing
-    │   ├── App.test.js # Tests for the App component
-    │   └── index.js    # Entry point for React app
-    └── package.json    # Node.js dependencies and scripts
+    │   ├── config.js     # Determine API Base by environment
+    │   ├── App.js        # Main React component with routing
+    │   ├── App.test.js   # Tests for the App component
+    │   └── index.js      # Entry point for React app
+    └── package.json      # Node.js dependencies and scripts
 ```
 
 ## Backend (Python/Flask)
@@ -91,7 +90,7 @@ If you prefer not to use the dev container, you can set up the project manually:
 2. Set up the frontend:
    ```
    cd frontend
-   pnpm install
+   npm install
    npm start
    ```
 
