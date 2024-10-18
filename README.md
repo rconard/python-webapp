@@ -21,10 +21,12 @@ This project is a basic implementation of a Model-View-Controller (MVC) pattern 
     ├── public/
     │   └── index.html    # HTML template
     ├── src/
+    │   ├── About.jsx     # About page component
     │   ├── config.js     # Determine API Base by environment
-    │   ├── App.js        # Main React component with routing
+    │   ├── App.jsx       # Main React component with routing
     │   ├── App.test.js   # Tests for the App component
-    │   └── index.js      # Entry point for React app
+    │   ├── index.jsx     # Entry point for React app
+    │   ├── Home.jsx      # Home component
     └── package.json      # Node.js dependencies and scripts
 ```
 

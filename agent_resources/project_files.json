@@ -1,14 +1,30 @@
-[
-  "/workspace/README.md",
-  "/workspace/agent_resources/project_structure.md",
-  "/workspace/agent_resources/project_files.json",
-  "/workspace/backend/app.py",
-  "/workspace/backend/requirements.txt",
-  "/workspace/backend/tests/test_api.py",
-  "/workspace/frontend/public/index.html",
-  "/workspace/frontend/src/config.js",
-  "/workspace/frontend/src/App.js",
-  "/workspace/frontend/src/App.test.js",
-  "/workspace/frontend/src/index.js",
-  "/workspace/frontend/package.json"
-]
+{
+  "meta": [
+    "README.md",
+    "agent_resources/project_structure.md",
+    "agent_resources/project_files.json"
+  ],
+  "backend_core": [
+    "/workspace/backend/requirements.txt"
+  ],
+  "backend": [
+    "/workspace/backend/app.py"
+  ],
+  "backend_test": [
+    "/workspace/backend/tests/test_api.py"
+  ],
+  "frontend_core": [
+    "/workspace/frontend/public/index.html",
+    "/workspace/frontend/src/config.js",
+    "/workspace/frontend/src/index.jsx",
+    "/workspace/frontend/package.json"
+  ],
+  "frontend_content": [
+    "/workspace/frontend/src/About.jsx",
+    "/workspace/frontend/src/App.jsx",
+    "/workspace/frontend/src/Home.jsx"
+  ],
+  "frontend_test": [
+    "/workspace/frontend/src/App.test.js"
+  ]
+}

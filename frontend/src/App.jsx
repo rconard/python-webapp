@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { API_BASE_URL } from './config';
+import About from './About';
 
-function App() {
+function Home() {
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState(null);
 
@@ -27,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>
       <h1>MVC Template App</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -45,6 +47,27 @@ function App() {
         </div>
       )}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 }
 
