@@ -124,8 +124,6 @@ $ cd /workspace/frontend && npm run test -- --watchAll=false
 
 coder.run(f"""
 I have two metadata files that I use for project maintenance with a mapping of the organization of the files in the webapp.
-          
-          I have a 
 
 # agent_resources/project_structure.md
 ```plaintext
