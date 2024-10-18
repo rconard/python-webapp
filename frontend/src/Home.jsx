@@ -5,8 +5,11 @@ function Home() {
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await fetch(`${API_BASE_URL}/api/echo`, {
         method: 'POST',
@@ -24,6 +27,8 @@ function Home() {
     } catch (error) {
       console.error('Error:', error);
       setResponse({ error: 'An error occurred' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,7 +44,7 @@ function Home() {
         />
         <button type="submit">Send</button>
       </form>
-      {response && (
+      {loading ? <p>Loading...</p> : response && (
         <div>
           <h2>Response from server:</h2>
           <pre>{JSON.stringify(response, null, 2)}</pre>

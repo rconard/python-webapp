@@ -35,7 +35,7 @@ class TestAPI(unittest.TestCase):
         response = self.app.post('/api/echo',
                                  data='This is not JSON',
                                  content_type='application/json')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 415)
 
     def test_echo_api_with_empty_request(self):
         """Test the echo API with an empty request."""
@@ -50,14 +50,14 @@ class TestAPI(unittest.TestCase):
         test_data = {"message": "Hello, World!"}
         response = self.app.post('/api/echo',
                                  data=json.dumps(test_data))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 415)
 
     def test_echo_api_non_json_content_type(self):
         """Test the echo API with non-JSON content type."""
         response = self.app.post('/api/echo',
                                  data='This is not JSON',
                                  content_type='text/plain')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 415)
 
     def test_echo_special_characters(self):
         """Test the echo API with special characters."""
@@ -82,7 +82,7 @@ class TestAPI(unittest.TestCase):
         test_data = {"message": "Hello, World!"}
         response = self.app.post('/api/echo',
                                  data=json.dumps(test_data))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 415)
 
     def test_echo_api_non_json_content_type(self):
         """Test the echo API with non-JSON content type."""

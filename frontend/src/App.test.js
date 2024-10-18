@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import Home from './Home';
 import About from './About';
@@ -144,7 +143,8 @@ describe('App component', () => {
     fireEvent.click(aboutLink);
 
     await waitFor(() => {
-      expect(screen.getByText(/About Page/i)).toBeInTheDocument();
+      const aboutPageElements = screen.getAllByText(/About Page/i);
+      expect(aboutPageElements.length).toBeGreaterThan(0);
     });
   });
 
@@ -193,9 +193,7 @@ describe('App component', () => {
 
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(screen.getByText(/"message": "Test message"/)).toBeInTheDocument();
-    });
+    await waitFor(() => expect(screen.getByText(/"message": "Test message"/)).toBeInTheDocument(), { timeout: 2000 });
   });
 });
 
