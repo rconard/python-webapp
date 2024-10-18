@@ -1,7 +1,7 @@
 [
   "/workspace/README.md",
   "/workspace/agent_resources/project_structure.md",
-  "/workspace/agent_resources/project_files.md",
+  "/workspace/agent_resources/project_files.json",
   "/workspace/backend/app.py",
   "/workspace/backend/requirements.txt",
   "/workspace/backend/tests/test_api.py",
