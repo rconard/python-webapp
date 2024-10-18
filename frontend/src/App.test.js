@@ -1,9 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import Home from './Home';
+import About from './About';
 import { API_BASE_URL } from './config';
 
 
@@ -12,40 +14,29 @@ jest.setTimeout(10000);
 
 describe('App component', () => {
   beforeEach(() => {
-    render(
-      <Router>
-        <App />
-      </Router>
-    );
+    // Any common setup code can go here
   });
+
   // Test 0: Verify that the navigation bar renders correctly
   test('renders navigation bar', async () => {
-
+    render(<App />);
     const homeLink = await screen.findByText(/Home/i);
     const aboutLink = await screen.findByText(/About/i);
 
     expect(homeLink).toBeInTheDocument();
     expect(aboutLink).toBeInTheDocument();
   });
-    const aboutLink = await screen.findByText(/About/i);
 
-    expect(homeLink).toBeInTheDocument();
-    expect(aboutLink).toBeInTheDocument();
-  });
-  test('renders main app components', () => {
-
+  // Test 1: Verify that the main app components render correctly
+  test('renders main app components', async () => {
+    render(<App />);
     const titleElement = screen.getByText(/MVC Template App/i);
     expect(titleElement).toBeInTheDocument();
 
-    const inputElement = screen.getAllByPlaceholderText(/Enter a message/i)[0];
-    expect(inputElement).toBeInTheDocument();
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
 
-    const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
-    expect(buttonElement).toBeInTheDocument();
-  });
-    expect(titleElement).toBeInTheDocument();
-
-    const inputElement = screen.getAllByPlaceholderText(/Enter a message/i)[0];
+    const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
     expect(inputElement).toBeInTheDocument();
 
     const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
@@ -53,8 +44,22 @@ describe('App component', () => {
   });
 
   // Test 2: Verify that user input is correctly handled
+  test('navigates to Home page', async () => {
+    render(<App />);
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText(/Enter a message/i)).toBeInTheDocument();
+    });
+  });
+
   test('handles user input correctly', async () => {
-    const inputElement = screen.getAllByPlaceholderText(/Enter a message/i)[0];
+    render(<App />);
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
+    const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
 
     await userEvent.type(inputElement, 'Hello, World!');
 
@@ -63,7 +68,11 @@ describe('App component', () => {
 
   // Test 3: Verify form submission and response display
   test('submits form and displays response', async () => {
-    const inputElement = screen.getByPlaceholderText(/Enter a message/i);
+    render(<App />);
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
+    const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
     const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
 
     await userEvent.type(inputElement, 'Test message');
@@ -80,7 +89,11 @@ describe('App component', () => {
   // Test 4: Verify handling of empty input
   test('handles empty input submission', async () => {
     render(<App />);
-    const buttonElement = screen.getByRole('button', { name: /Send/i });
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
+    const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
+    const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
 
     fireEvent.click(buttonElement);
 
@@ -95,8 +108,11 @@ describe('App component', () => {
   // Test 5: Verify that multiple submissions update the displayed response
   test('updates displayed response on multiple submissions', async () => {
     render(<App />);
-    const inputElement = screen.getByPlaceholderText(/Enter a message/i);
-    const buttonElement = screen.getByRole('button', { name: /Send/i });
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
+    const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
+    const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
 
     // First submission
     await userEvent.type(inputElement, 'First message');
@@ -115,8 +131,9 @@ describe('App component', () => {
     fireEvent.click(buttonElement);
 
     // Check if the response is updated
-    responseElement = await screen.findByText(/"message": "Second message"/);
-    expect(responseElement).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/"message": "Second message"/)).toBeInTheDocument();
+    }, { timeout: 5000 });
   });
 
   // Test 6: Verify navigation to About page
@@ -127,7 +144,7 @@ describe('App component', () => {
     fireEvent.click(aboutLink);
 
     await waitFor(() => {
-      expect(screen.getByText(/This is the about page/i)).toBeInTheDocument();
+      expect(screen.getByText(/About Page/i)).toBeInTheDocument();
     });
   });
 
@@ -140,8 +157,12 @@ describe('App component', () => {
       })
     );
 
+    render(<App />);
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
     const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
-    const buttonElement = screen.getByRole('button', { name: /Send/i });
+    const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
 
     await userEvent.type(inputElement, 'Test message');
     fireEvent.click(buttonElement);
@@ -160,8 +181,12 @@ describe('App component', () => {
       }), 1000))
     );
 
+    render(<App />);
+    const homeLink = screen.getByText(/Home/i);
+    fireEvent.click(homeLink);
+
     const inputElement = await screen.findByPlaceholderText(/Enter a message/i);
-    const buttonElement = screen.getByRole('button', { name: /Send/i });
+    const buttonElement = screen.getAllByRole('button', { name: /Send/i })[0];
 
     await userEvent.type(inputElement, 'Test message');
     fireEvent.click(buttonElement);
@@ -172,4 +197,25 @@ describe('App component', () => {
       expect(screen.getByText(/"message": "Test message"/)).toBeInTheDocument();
     });
   });
+});
+
+// Additional Tests
+
+// Test 9: Verify that the Home component renders correctly
+test('renders Home component without crashing', () => {
+  render(<Home />);
+  const titleElement = screen.getByText(/MVC Template App/i);
+  expect(titleElement).toBeInTheDocument();
+});
+
+// Test 10: Verify that the About component renders correctly
+test('renders About component without crashing', () => {
+  render(<About />);
+  const titleElement = screen.getAllByText(/About Page/i)[0];
+  expect(titleElement).toBeInTheDocument();
+});
+
+// Test 11: Verify that the API_BASE_URL is correctly set
+test('API_BASE_URL is correctly set', () => {
+  expect(API_BASE_URL).toBe('http://localhost:5000');
 });
