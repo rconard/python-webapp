@@ -33,7 +33,7 @@ coder = Coder.create(
   fnames=fnames,
   io=io,
   use_git=False,
-  auto_commit=False,
+  auto_commits=False,
   auto_test=True,
   test_cmd="cd /workspace/frontend && npm run test -- --watchAll=false && cd /workspace/backend && pytest tests/test_api.py",
 )
